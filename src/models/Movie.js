@@ -18,4 +18,7 @@ export class Movie {
   get posterImgUrl() {
     return 'https://image.tmdb.org/t/p/w500/' + this.posterPath
   }
+  get posterHDImgUrl() {
+    return 'https://image.tmdb.org/t/p/original/' + this.posterPath
+  }
 }

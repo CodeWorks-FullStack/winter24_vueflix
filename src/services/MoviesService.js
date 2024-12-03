@@ -9,6 +9,8 @@ class MoviesService {
     logger.log('DISCOVERED MOVIES 🎥', response.data)
     const movies = response.data.results.map(moviePOJO => new Movie(moviePOJO))
     AppState.movies = movies
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.total_pages
   }
 }
 
