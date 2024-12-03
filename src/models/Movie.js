@@ -10,4 +10,12 @@ export class Movie {
     this.voteAverage = data.vote_average
     this.voteCount = data.vote_count
   }
+
+  get backdropImgUrl() {
+    return 'https://image.tmdb.org/t/p/w500/' + this.backdropPath
+  }
+
+  get posterImgUrl() {
+    return 'https://image.tmdb.org/t/p/w500/' + this.posterPath
+  }
 }
