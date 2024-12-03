@@ -1,8 +1,15 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { moviesService } from '@/services/MoviesService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
+
+// explicit return
+// const movies = computed(() => { return AppState.movies })
+
+// implied return
+const movies = computed(() => AppState.movies)
 
 // NOTE lifecycle hook
 // NOTE onMounted will execute a function whenever this component is visible
@@ -28,7 +35,18 @@ async function discoverMovies() {
 </script>
 
 <template>
-  <p>Sup</p>
+  <div class="container">
+    <section class="row">
+      <div class="col-12">
+        <h1>Discover Movies</h1>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-12">
+        {{ movies }}
+      </div>
+    </section>
+  </div>
 </template>
 
 <style scoped lang="scss"></style>
