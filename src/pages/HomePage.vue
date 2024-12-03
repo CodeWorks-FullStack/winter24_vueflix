@@ -34,6 +34,10 @@ async function discoverMovies() {
   }
 }
 
+async function changePage(pageNumber) {
+  logger.log('Going to page ' + pageNumber)
+}
+
 </script>
 
 <template>
@@ -41,7 +45,11 @@ async function discoverMovies() {
     <section class="row">
       <div class="col-12">
         <h1>Discover Movies</h1>
-        <p>Page {{ currentPage }} of {{ totalPages }}</p>
+        <div class="d-flex gap-2 align-items-center mb-3">
+          <button @click="changePage(currentPage - 1)" class="btn btn-outline-dark">Previous</button>
+          <span class="fw-bold">Page {{ currentPage }} of {{ totalPages }}</span>
+          <button @click="changePage(currentPage + 1)" class="btn btn-outline-dark">Next</button>
+        </div>
       </div>
     </section>
     <section class="row">
