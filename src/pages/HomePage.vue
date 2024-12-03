@@ -35,7 +35,12 @@ async function discoverMovies() {
 }
 
 async function changePage(pageNumber) {
-  logger.log('Going to page ' + pageNumber)
+  try {
+    await moviesService.changeDiscoverPage(pageNumber)
+  } catch (error) {
+    logger.error('[CHANGE MOVIES PAGE]', error)
+    Pop.error(error)
+  }
 }
 
 </script>
