@@ -18,6 +18,7 @@ const totalPages = computed(() => AppState.totalPages)
 // NOTE onMounted will execute a function whenever this component is visible
 onMounted(() => {
   logger.log('On mounted is running!')
+  moviesService.clearMovies()
   discoverMovies()
 })
 

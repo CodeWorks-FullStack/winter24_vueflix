@@ -28,6 +28,10 @@ class MoviesService {
     AppState.currentPage = responseData.page
     AppState.totalPages = responseData.total_pages
   }
+
+  clearMovies() {
+    AppState.movies = []
+  }
 }
 
 export const moviesService = new MoviesService()

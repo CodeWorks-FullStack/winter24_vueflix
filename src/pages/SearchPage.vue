@@ -1,10 +1,18 @@
 <script setup>
+import { AppState } from '@/AppState.js';
+import MovieCard from '@/components/MovieCard.vue';
 import { moviesService } from '@/services/MoviesService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+
+const movies = computed(() => AppState.movies)
 
 const editableSearchQuery = ref('')
+
+onMounted(() => {
+  moviesService.clearMovies()
+})
 
 async function searchMovies() {
   try {
@@ -38,6 +46,11 @@ async function searchMovies() {
             </div>
           </form>
         </div>
+      </div>
+    </section>
+    <section class="row">
+      <div v-for="movie in movies" :key="movie.id" class="col-md-3">
+        <MovieCard :movieProp="movie" />
       </div>
     </section>
   </div>
