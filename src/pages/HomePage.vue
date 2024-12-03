@@ -10,6 +10,8 @@ import { computed, onMounted } from 'vue';
 
 // implied return
 const movies = computed(() => AppState.movies)
+const currentPage = computed(() => AppState.currentPage)
+const totalPages = computed(() => AppState.totalPages)
 
 // NOTE lifecycle hook
 // NOTE onMounted will execute a function whenever this component is visible
@@ -39,6 +41,7 @@ async function discoverMovies() {
     <section class="row">
       <div class="col-12">
         <h1>Discover Movies</h1>
+        <p>Page {{ currentPage }} of {{ totalPages }}</p>
       </div>
     </section>
     <section class="row">
