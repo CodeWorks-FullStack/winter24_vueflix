@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import MovieCard from '@/components/MovieCard.vue';
+import PageNavigation from '@/components/PageNavigation.vue';
 import { moviesService } from '@/services/MoviesService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
@@ -48,6 +49,9 @@ async function searchMovies() {
         </div>
       </div>
     </section>
+    <div class="col-12">
+      <PageNavigation :searchQueryProp="editableSearchQuery" />
+    </div>
     <section class="row">
       <div v-for="movie in movies" :key="movie.id" class="col-md-3">
         <MovieCard :movieProp="movie" />

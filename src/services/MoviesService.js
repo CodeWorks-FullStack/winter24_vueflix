@@ -22,6 +22,12 @@ class MoviesService {
     this.handleResponseData(response.data)
   }
 
+  async changeSearchPage(pageNumber, searchQuery) {
+    const response = await movieApi.get(`search/movie?query=${searchQuery}&page=${pageNumber}`)
+    logger.log('CHANGED SEARCH PAGE 🔍', response.data)
+    this.handleResponseData(response.data)
+  }
+
   handleResponseData(responseData) {
     const movies = responseData.results.map(moviePOJO => new Movie(moviePOJO))
     AppState.movies = movies
@@ -31,6 +37,8 @@ class MoviesService {
 
   clearMovies() {
     AppState.movies = []
+    AppState.currentPage = 0
+    AppState.totalPages = 0
   }
 }
 

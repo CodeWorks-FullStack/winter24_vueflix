@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import MovieCard from '@/components/MovieCard.vue';
+import PageNavigation from '@/components/PageNavigation.vue';
 import { moviesService } from '@/services/MoviesService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
@@ -11,8 +12,7 @@ import { computed, onMounted } from 'vue';
 
 // implied return
 const movies = computed(() => AppState.movies)
-const currentPage = computed(() => AppState.currentPage)
-const totalPages = computed(() => AppState.totalPages)
+
 
 // NOTE lifecycle hook
 // NOTE onMounted will execute a function whenever this component is visible
@@ -36,15 +36,6 @@ async function discoverMovies() {
   }
 }
 
-async function changePage(pageNumber) {
-  try {
-    await moviesService.changeDiscoverPage(pageNumber)
-  } catch (error) {
-    logger.error('[CHANGE MOVIES PAGE]', error)
-    Pop.error(error)
-  }
-}
-
 </script>
 
 <template>
@@ -52,18 +43,9 @@ async function changePage(pageNumber) {
     <section class="row">
       <div class="col-12">
         <h1>Discover Movies</h1>
-        <div class="d-flex gap-2 align-items-center mb-3">
-          <button @click="changePage(currentPage - 1)" class="btn btn-outline-dark" :disabled="currentPage == 1"
-            type="button" :title="`Go to page ${currentPage - 1}`">
-            Previous
-          </button>
-          <span class="fw-bold">Page {{ currentPage }} of {{ totalPages }}</span>
-          <button @click="changePage(currentPage + 1)" class="btn btn-outline-dark"
-            :disabled="currentPage == 500 || currentPage == totalPages" type="button"
-            :title="`Go to page ${currentPage + 1}`">
-            Next
-          </button>
-        </div>
+      </div>
+      <div class="col-12">
+        <PageNavigation />
       </div>
     </section>
     <section class="row">
