@@ -4,6 +4,7 @@ import { Movie } from "@/models/Movie.js"
 import { AppState } from "@/AppState.js"
 
 class MoviesService {
+
   async discoverMovies() {
     const response = await movieApi.get('discover/movie')
     logger.log('DISCOVERED MOVIES 🎥', response.data)
@@ -19,6 +20,11 @@ class MoviesService {
     AppState.movies = movies
     AppState.currentPage = response.data.page
     AppState.totalPages = response.data.total_pages
+  }
+
+  async searchMovies(searchQuery) {
+    const response = await movieApi.get(`search/movie?query=${searchQuery}`)
+    logger.log('SEARCHED MOVIES 🔍', response.data)
   }
 }
 

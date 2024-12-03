@@ -31,6 +31,7 @@ function toggleTheme() {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
+          <!-- NOTE Be careful when adding a router-link because it will break the heck out of your app if not don correctly -->
           <router-link :to="{ name: 'Search' }" class="btn text-success lighten-30 selectable text-uppercase">
             Search <i class="mdi mdi-magnify"></i>
           </router-link>
